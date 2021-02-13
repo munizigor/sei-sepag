@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "SEI-SEPAG",
+  "version": "0.1",
+
+  "short_name": "SEI-SEPAG",
+  "description": "Extensão Interna da SEPAG/DIGEP para interagir com o SEI",
+  "author": "Igor Muniz",
+  "homepage_url": "https://munizigor.github.io/sei-sepag/",
+  "icons": {
+    "48": "img/cbm.jpg"
+  },
+  "permissions": ["storage", "*://raw.githubusercontent.com/*"],
+//  "background": {
+//    "scripts": ["background.js"]
+//  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.br/sei/controlador.php?acao=procedimento_trabalhar*"],
+      "js":["js/borderify.js"]
+//,
+//      "js": ["https://raw.githubusercontent.com/munizigor/salariomilitares/master/static/js/calc.js",
+//	     "https://raw.githubusercontent.com/munizigor/salariomilitares/master/static/js/dados_remuneracao.js"
+//	]
+//TODO: Acessar urls externas
+    }
+  ] 
+}
