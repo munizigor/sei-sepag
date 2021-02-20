@@ -7,7 +7,7 @@ function clicar_acao (indice) {
     }
 }
 
-clicar_acao(0);
+//clicar_acao(0);
 
 //TODO: Função deve aguardar o carregamento da página para executar
 function clicar_documento (indice) {
@@ -17,6 +17,19 @@ function clicar_documento (indice) {
         memorando.click();
     }
 }
+
+function criar_botao_sepag () {
+    document.getElementById("ifrVisualizacao").onload = function() {
+        var visualizacao = document.getElementById("ifrVisualizacao").contentWindow.document;
+        var botaoSEPAG = visualizacao.createElement("a");
+        botaoSEPAG.setAttribute("class","botaoSEI");
+        botaoSEPAG.innerHTML = '<img class="infraCorBarraSistema" alt="Inserir Documentos SEPAG" title="Inserir Documentos SEPAG">'
+        imgSEPAG = botaoSEPAG.childNodes[0];
+        imgSEPAG.setAttribute("src",chrome.runtime.getURL("img/icon_cbm.jpeg"));
+        visualizacao.getElementById("divArvoreAcoes").appendChild(botaoSEPAG);
+    }
+}
+criar_botao_sepag ();
 
 /*
 TODO: html botao SEI
