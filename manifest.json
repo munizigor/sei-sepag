@@ -16,7 +16,7 @@
 //  },
   "content_scripts": [
     {
-      "matches": ["*://*.br/sei/controlador.php?acao=procedimento_trabalhar*"],
+      "matches": ["*://*.br/sei/controlador.php?acao=editor_montar*"],
       "js":["js/arvore_acao.js"]
 //,
 //      "js": ["https://raw.githubusercontent.com/munizigor/salariomilitares/master/static/js/calc.js",
