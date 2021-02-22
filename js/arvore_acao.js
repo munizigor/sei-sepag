@@ -1,14 +1,12 @@
-function getURL(url) {
+function getURL(link) {
     return chrome.runtime.getURL(url);
 }
 var tipo_doc_div = `
 <span class="cke_toolgroup" role="presentation">
     <a id="tipo_doc_button" class="cke_button cke_button_off" title="Documentos automatizados da SEPAG"
         tabindex="-1" target="_blank" href="`+
-        getURL("html/teste.html")
+        chrome.runtime.getURL("html/teste.html")
         +`"hidefocus="true" role="button" aria-haspopup="false">
-            <img class="cke_button_icon"
-                src="https://sei.df.gov.br/sei/editor/ck/plugins/linksei/images/sei.png">
             <span id="tipo_doc_label" class="cke_button" aria-hidden="false">Documentos SEPAG</span>
     </a>
 </span>
