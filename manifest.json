@@ -10,7 +10,7 @@
   "icons": {
     "48": "img/cbm.jpg"
   },
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab","<all_urls>"],
 //  "background": {
 //    "scripts": ["js/botaoSEPAG_form.js"]
 //  },
