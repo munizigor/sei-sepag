@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<!-- Bloco de Estilos -->
+
+		<meta charset="utf-8" >
+		<meta name="Description" content="Autor: Igor Muniz da Silva, Ano: 2021, Nome: SEI-SEPAG">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="../../css/base.css"/>
+
+
+		<!-- Bloco de Scripts -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"> </script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+		<script src="static/js/variaveis.js"></script>
+		<script src="static/js/diarias_data.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div class="main-container">
+
+	<div class="content container">
+        <a href="/html/index.html">VOLTAR</a>
+		<h1>DIÁRIAS NACIONAIS</h1>
+		<div class="dropdown-divider"></div>
+		<h2>DADOS GERAIS</h2>
+		<div class="border rounded" id="dadosgerais">
+		<div class="form-row">
+				<div class="form-group col-md-10">
+				  <label for="descricao">Descrição da Viagem</label>
+				  <input type="text" name="descricao" maxlength="60" class="form-control" id="descricao">
+				</div>
+				<div class="form-group col-md-2">
+				  <label for="publ_of">Boletim Geral ou SEI</label>
+				  <input type="text" name="publ_of" maxlength="30" class="form-control" id="publ_of" placeholder="BG ou SEI">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+				  <label for="destino">Destino</label>
+<!--					TODO: Inserir possibilidade de múltiplos destinos (ex: Viagem CFO)-->
+				  <select name="destino" class="form-control" required id="destino">
+					<option value="null"></option>
+	<!--				<option value="BSB">Brasília</option>-->
+					<option value="BEL">Belo Horizonte</option>
+					<option value="FOR">Fortaleza</option>
+					<option value="MAN">Manaus</option>
+					<option value="POA">Porto Alegre</option>
+					<option value="REC">Recife</option>
+					<option value="RIO">Rio de Janeiro</option>
+					<option value="SAL">Salvador</option>
+					<option value="SAO">São Paulo</option>
+					<option value="CAP">Demais Capitais</option>
+					<option value="DES">Demais Deslocamentos</option>
+
+				  </select>
+				</div>
+				<div class="form-group col-md-2">
+				  <label for="data_saida">Data de Saída da Sede</label>
+				  <input type="text" name="data_saida" class="form-control data" id="data_saida" type=date required>
+				</div>
+				<div class="form-group col-md-2">
+				  <label for="data_retorno">Data de Chegada na Sede</label>
+				  <input type="text" name="data_retorno" class="form-control data" id="data_retorno" type=date required>
+				</div>
+				<div class="form-group col-md-2" onmouseover="mostrarmissao ()" onmouseout="removermissao ()">
+				  <label for="missao">Missão</label>
+				  <select name="missao" class="form-control" required id="missao" onchange="calc_datas(event)">
+					<option value="True" selected>Eventual</option>
+					<option value="False">Não Eventual</option>
+				  </select>
+				</div>
+				<div class="form-group col-md-2">
+				  <label for="qtde_dias">Dias de Afastamento</label>
+				  <input type="text" name="qtde_dias" class="form-control" id="qtde_dias" readonly>
+				</div>
+				<div class="form-group col-md-2">
+				  <label for="qtde_diarias">Quantidade de Diárias</label>
+				  <input type="text" name="qtde_diarias" class="form-control" id="qtde_diarias" readonly>
+				</div>
+
+				<input type="hidden" id="ajudadecusto_ida"  value=0 />
+				<input type="hidden" id="ajudadecusto_volta"  value=0 />
+			</div>
+		</div>
+		</br>
+		</br>
+
+		<h2>DADOS DOS MILITARES</h2>
+		<div class="militares" id="militares">
+			<script type="text/javascript">
+        		var n=1;
+        		var c=1;
+        		document.write(militar(n));
+        		banco_autocomplete ()
+      		</script>
+		</div>
+		</br>
+		</br>
+		<div style="text-align: center">
+			<button type="button" id="btn-calcular" onclick="javascript:calcular();" class="btn btn-dark">Calcular</button>
+			<button type="button" id="btn-limpar" onclick="javascript:limpar();"class="btn btn-dark">Limpar</button>
+			<button type="button" id="btn-gerarPDF" onclick="javascript:gerarPDF();" class="btn btn-dark">Imprimir</button>
+		<!--			TODO: Após calcular, info para conferir informações geradas e gerar PDF-->
+		</div>
+		</br>
+			<div class="planilha" id="planilha" style="display:none;">
+			<div id="dadosgerais_div">
+			<h3>DADOS GERAIS</h3>
+
+			</div>
+			<div class="diarias" id="diarias_div">
+			<h3>DIÁRIAS</h3>
+				<div class="table-responsive">
+				<table class="table" id="diarias">
+						<thead>
+							<tr>
+								<th>Matrícula</th>
+								<th>Posto/Graduação</th>
+								<th>Nome</th>
+								<th>Valor da Diária</th>
+								<th>Valor Bruto da Diária</th>
+								<th>Devolução Aux. Alimentação</th>
+								<th>Valor Líquido</th>
+							</tr>
+						</thead>
+				</table>
+				</div>
+			</div>
+
+
+<!--				TODO: Calulo mensal de diarias
+			<div class="diarias-mensal table-responsive">
+				<h3>PLANILHA DE PAGAMENTO MENSAL DE DIÁRIAS</h3>
+			</div>
+-->
+			<div class="ajudadecusto" id="ajudadecusto_div">
+			<h3>AJUDA DE CUSTO</h3>
+				<div class="table-responsive">
+				<table class="table" id="ajudadecusto">
+						<thead>
+							<tr>
+								<th>Matrícula</th>
+								<th>Posto/Graduação</th>
+								<th>Nome</th>
+								<th>Remuneração</th>
+								<th>Levará Dependente?</th>
+								<th>Ajuda de Custo - Ida</th>
+								<th>Ajuda de Custo - Volta</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+				</table>
+				</div>
+			</div>
+			<div class="financeiro">
+			<h3>DADOS FINANCEIROS</h3>
+				<div class="table-responsive">
+				<table class="table" id="financeiro">
+						<thead>
+							<tr>
+								<th>Nome</th>
+								<th>CPF</th>
+								<th>Banco</th>
+								<th>Agência</th>
+								<th>Conta</th>
+							</tr>
+						</thead>
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<p>CBMDF - Corpo de Bombeiros Militar do Distrito Federal</p>
+	</footer>
+	</div>
+	</body>
+	<script src="static/js/diarias.js"></script>
+</html>

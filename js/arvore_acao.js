@@ -1,23 +1,30 @@
 function criar_botao_sepag () {
         var botaoSEPAG = document.createElement("div");
         botaoSEPAG.setAttribute("class","cke_top");
-        botaoSEPAG.innerHTML = '<button type="button" id="docsSEPAG" onclick="toggleText()"> Documentos SEPAG</button>'
+        botaoSEPAG.innerHTML = '<button type="button" id="docsSEPAG"> Documentos SEPAG</button>'
         document.getElementById("divEditores").insertAdjacentElement("afterbegin",botaoSEPAG);
         var seletor_doc = document.getElementById("tipo_doc")
         infosSEPAG = document.createElement("iframe");
-        infosSEPAG.innerHTML = "TESTE";
         infosSEPAG.setAttribute("id","infosSEPAG");
         infosSEPAG.style.display="none";
-        infosSEPAG.style.width="100%";
+        infosSEPAG.style.width="30%";
+        infosSEPAG.style.float="left";
+        infosSEPAG.style.height="100%";
+        infosSEPAG.style.position="absolute";
         infosSEPAG.setAttribute("class","cke_top");
         infosSEPAG.src = chrome.runtime.getURL("html/index.html");
-        document.getElementById("docsSEPAG").insertAdjacentElement('afterend',infosSEPAG)
+        document.getElementById("frmEditor").insertAdjacentElement('beforebegin',infosSEPAG)
         document.getElementById("docsSEPAG").onclick = function() {
-            text = document.getElementById("infosSEPAG");
-            if (text.style.display === "none") {
-                text.style.display = "block";
+            sepag = document.getElementById("infosSEPAG");
+            form = document.getElementById("frmEditor");
+            if (sepag.style.display === "none") {
+                sepag.style.display = "block";
+                form.style.width = "68%"
+                form.style.float = "right"
             } else {
-                text.style.display = "none";
+                sepag.style.display = "none";
+                form.style.width = "100%"
+                form.style.float = ""
             }
         }
 }
