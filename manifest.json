@@ -23,7 +23,7 @@
     }
   ],
   "web_accessible_resources": [
-    "html/teste.html",
+    "html/",
     "https://raw.githubusercontent.com/munizigor/salariomilitares/master/static/js/dados_remuneracao.js",
     "img/icon_cbm.jpeg"
   ]
