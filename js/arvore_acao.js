@@ -1,3 +1,6 @@
+//function load_page(page_path) {
+//     document.getElementById("infosSEPAG").innerHTML='<object type="text/html" data="'+chrome.runtime.getURL(page_path)+'"></object>';
+//}
 function criar_botao_sepag () {
         var botaoSEPAG = document.createElement("div");
         botaoSEPAG.setAttribute("class","cke_top");
@@ -30,8 +33,11 @@ function criar_botao_sepag () {
 }
 
 criar_botao_sepag ();
+//load_page("html/index.html");
+//$("#infosSEPAG").load(chrome.runtime.getURL("html/index.html"));
 
-
-
+document.getElementById("exportar").onclick = function() {
+alert('EXPORTACAO FUNCIONANDO')
+}
 //TODO: buscar dados para POST
 

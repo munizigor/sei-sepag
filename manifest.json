@@ -11,6 +11,11 @@
     "48": "img/cbm.jpg"
   },
   "permissions": ["storage", "activeTab","<all_urls>"],
+  "background": {
+    "scripts": [
+      "js/jquery-3.2.1.slim.min.js"
+      ]
+  },
   "content_scripts": [
     {
       "matches": ["*://*.br/sei/controlador.php?acao=editor_montar*"],
@@ -25,6 +30,8 @@
   "web_accessible_resources": [
     "html/",
     "https://raw.githubusercontent.com/munizigor/salariomilitares/master/static/js/dados_remuneracao.js",
-    "img/icon_cbm.jpeg"
+    "img/icon_cbm.jpeg",
+    "js/",
+    "https://code.jquery.com/jquery-3.2.1.slim.min.js"
   ]
 }
